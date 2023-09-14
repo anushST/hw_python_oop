@@ -122,7 +122,7 @@ class Swimming(Training):
                 * self.weight * self.duration)
 
 
-WORKOUT_NAMES = {
+WORKOUT_NAMES: dict = {
     'SWM': Swimming,
     'RUN': Running,
     'WLK': SportsWalking,
@@ -132,8 +132,7 @@ WORKOUT_NAMES = {
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
     if workout_type not in WORKOUT_NAMES:
-        raise ValueError('Такой тренеровки нет')
-
+        raise ValueError(f'Тренеровки {workout_type} нет')
     return WORKOUT_NAMES[workout_type](*data)
 
 
@@ -144,12 +143,12 @@ def main(training: Training) -> None:
 
 
 if __name__ == '__main__':
-    packages = [
+    packages: list = [
         ('SWM', [720, 1, 80, 25, 40]),
         ('RUN', [15000, 1, 75]),
         ('WLK', [9000, 1, 75, 180]),
     ]
 
     for workout_type, data in packages:
-        training = read_package(workout_type, data)
+        training: Training = read_package(workout_type, data)
         main(training)
