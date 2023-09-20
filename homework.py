@@ -122,7 +122,7 @@ class Swimming(Training):
                 * self.weight * self.duration)
 
 
-WORKOUT_NAMES: dict[str, Training] = {
+WORKOUT_NAMES: dict[str, type[Training]] = {
     'SWM': Swimming,
     'RUN': Running,
     'WLK': SportsWalking,
